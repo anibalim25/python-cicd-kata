@@ -1,0 +1,16 @@
+name: Python CICD kata
+run-name: Python CICD kata
+on: [push]
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: "set up Pyhton"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+      - run: uv run ruff gormat .
+
